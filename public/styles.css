@@ -1,61 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-html {
-  font-family: "Montserrat", sans-serif;
-}
+
 body {
-  padding: 0 16px;
-  background-color: #fcf5ff;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
-  /* overflow: hidden; */
-  overflow-x: hidden;
+  background-color: #ffffff;
+  padding: 2rem 12rem;
+
 }
 .message{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 70vh;
-
+  width: 100%;
+  font-family: "Montserrat";
 }
 .message > img {
   width: 10vh;
 }
 header {
-  background-color: #f5ba13;
-  margin: auto -16px;
-  padding: 16px 32px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 header h1 {
-  color: #fff;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
+  color: #000000;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 45px;
+}
+header > div{
+  gap: 4rem;
+  align-items: center;
+  display: flex;
+}
+header > div > span{
+  font-size: 20px;
+  font-family: "Montserrat";
+  text-decoration: underline;
+}
+header > div > img{
+  width: 3rem;
+  border-radius: 50%;
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   text-align: center;
   bottom: 0;
-  width: 100%;
   height: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 footer p {
   color: #ccc;
 }
+.drop{
+  /* background-color: #f5ba13; */
+  /* height: 20rem; */
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
 .note {
+  position: relative;
   background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
+  border-radius: 15px;
   padding: 10px;
-  width: 240px;
-  margin: 16px;
+  width: 24%;
+  min-width: 300px;
+  height: fit-content;
   float: left;
+  font-family: "Montserrat";
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.note:hover{
+  /* cursor: pointer; */
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
 }
 .note h1 {
   font-size: 1.1em;
@@ -67,17 +101,23 @@ footer p {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-
-.note button {
-  position: relative;
-  float: right;
-  margin-right: 10px;
-  color: #f5ba13;
+.cross{
+  background-color: transparent;
+  position: absolute;
+  right: 2%;
+  top: 7%;
+  color: #3f3f3f;
   border: none;
   width: 36px;
   height: 36px;
   cursor: pointer;
   outline: none;
+}
+.hidden{
+display: none;
+}
+.note button {
+  
 }
 
 form.create-note {
@@ -86,17 +126,18 @@ form.create-note {
   margin: 30px auto 20px auto;
   background: #fff;
   padding: 15px;
-  border-radius: 7px;
-  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 form.create-note input,
 form.create-note textarea {
   width: 100%;
   border: none;
-  padding: 4px;
+  padding: 2px;
   outline: none;
   font-size: 1.2em;
-  font-family: inherit;
+  font-family: "Montserrat";
+  font-weight: 400;
   resize: none;
 }
 form.create-note button {

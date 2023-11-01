@@ -1,12 +1,23 @@
-import React from "react";
-import DeleteIcon from '@mui/icons-material/Delete';
+import React, { useState } from "react";
+import ClearIcon from '@mui/icons-material/Clear';
 function Note(props){
+    const [isHovering, setIsHovering] = useState(false);
+
+    const handleMouseEnter = () => {
+      setIsHovering(true);
+    };
+  
+    const handleMouseLeave = () => {
+      setIsHovering(false);
+    };
     return(
-        <div className="note">
+        <div className="note" 
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}>
             <h1>{props.name}</h1>
             <p>{props.desc}</p>
-            <button onClick={()=>props.onDlt(props.id)}>
-                <DeleteIcon/>
+            <button className={ isHovering ? "cross" : "hidden"} onClick={()=>props.onDlt(props.id)}>
+                <ClearIcon/>
             </button>
         </div>
     );

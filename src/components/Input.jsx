@@ -33,8 +33,8 @@ function Input(props){
     return(
         <div>
             <form className="create-note">
-                <input hidden={!isTyping} type="text" name="name" value={input.name} onChange={handleChange} placeholder="Name of the note"/>
-                <textarea onClick={expand} rows={isTyping ? 3 :1} type="text" name="desc" value={input.desc} onChange={handleChange} placeholder="Take a note ..."/>
+                <input hidden={!isTyping} type="text" name="name" value={input.name} onChange={handleChange} placeholder="Title goes here"/>
+                <textarea onClick={expand} rows={isTyping ? 3 :1} type="text" name="desc" value={input.desc} onChange={handleChange} placeholder="add a note"/>
                 <Zoom in={isTyping}>
                     <Fab disabled={input.name === "" && input.desc ==="" ? true : false } onClick={handleClick}>
                         <AddIcon/>

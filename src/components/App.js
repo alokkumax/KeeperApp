@@ -34,23 +34,29 @@ import Input from "./Input";
           <>
               <Header/>
               <Input onAdd = {onSubmit}/>
-              {   notes.length === 0 ? 
-                  <div className="message">
-                      <img src="../../no-results.png"/>
-                      <br/>
-                      <h3>No notes</h3>
-                  </div>
-                  :
-                  notes.map((item,index)=>(
-                  <Note
-                      key ={index}
-                      id={index}
-                      name = {item.name}
-                      desc = {item.desc}
-                      onDlt = {handelDelete}
-                  />
-              ))}
-              <Footer/>
+                <div className="drop">
+                {   notes.length === 0 ? 
+                    <div className="message">
+                        {/* <img src="../../no-results.png"/> */}
+                        {/* <br/> */}
+                        <h3>No notes</h3>
+                    </div>
+                    :
+                   
+                    notes.map((item,index)=>(
+                        <Note
+                        key ={index}
+                        id={index}
+                        name = {item.name}
+                        desc = {item.desc}
+                        onDlt = {handelDelete}
+                    />
+                    
+                ))}
+                </div>
+              
+             
+              {/* <Footer/> */}
           </>
       );
   }
