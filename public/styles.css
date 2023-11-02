@@ -1,15 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
+
+
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
+html{
+  height: 100%;
+}
 body {
-  background-color: #ffffff;
+  /* background-color: #ec7979; */
   padding: 2rem 12rem;
+  min-height: 100%;
 
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+
+}
+.main{
+  background-color: #414141;
 }
 .message{
   display: flex;
@@ -23,6 +37,7 @@ body {
   width: 10vh;
 }
 header {
+  /* position: fixed; */
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
@@ -40,7 +55,7 @@ header > div{
   align-items: center;
   display: flex;
 }
-header > div > span{
+header > div > a{
   font-size: 20px;
   font-family: "Montserrat";
   text-decoration: underline;
@@ -49,30 +64,53 @@ header > div > img{
   width: 3rem;
   border-radius: 50%;
 }
-
-footer {
-  position: fixed;
-  text-align: center;
-  bottom: 0;
-  height: 2.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.footer{
+  margin-top: auto;
   width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0rem;
+  /* background-color: #efefef; */
+  text-align: center;
+  /* bottom: 0%; */
+  /* top: 85%; */
+}
+.footer > div{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ height: 4rem;
+ background-color: #ffffff;
+ /* position: absolute; */
+ bottom: 0%;
+ width: 100%;
+ border-top: 1px solid gray;
+ padding: 0rem 12rem;
+ font-family: "Montserrat";
+
+}
+a{
+  color: #000000;
+}
+.footer > div > a{
+  text-decoration: underline;
+}
+.footer > div > span{
+  text-align: center;
+}
+.footer > div > div{
+  display: flex;
+  gap: 1.5rem;
 }
 
-footer p {
-  color: #ccc;
-}
+
 .drop{
-  /* background-color: #f5ba13; */
-  /* height: 20rem; */
   display: flex;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 2rem;
+  padding-bottom: 4rem;
 }
 .note {
   position: relative;
@@ -87,7 +125,6 @@ footer p {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 .note:hover{
-  /* cursor: pointer; */
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 
 }
@@ -140,17 +177,29 @@ form.create-note textarea {
   font-weight: 400;
   resize: none;
 }
-form.create-note button {
+.add{
+  display: none;
   position: absolute;
-  right: 18px;
-  bottom: -18px;
-  background: #f5ba13;
+  right: 2%;
+  bottom: 5%;
+  background: #080808;
   color: #fff;
   border: none;
   border-radius: 50%;
   width: 36px;
   height: 36px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); */
   cursor: pointer;
   outline: none;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.hide{
+  display: none;
+}
+form.create-note button:hover{
+  background: #414141;
+
+
 }

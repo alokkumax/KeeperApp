@@ -56,7 +56,7 @@ import Input from "./Input";
                 </div>
               
              
-              {/* <Footer/> */}
+              <Footer/>
           </>
       );
   }

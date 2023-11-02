@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
 import Zoom from '@mui/material/Zoom';
+import { Box, Button } from "@mui/material";
 function Input(props){
     const [isTyping, setIsType] = useState(false)
     const [input, setInput] = useState({
@@ -35,11 +36,16 @@ function Input(props){
             <form className="create-note">
                 <input hidden={!isTyping} type="text" name="name" value={input.name} onChange={handleChange} placeholder="Title goes here"/>
                 <textarea onClick={expand} rows={isTyping ? 3 :1} type="text" name="desc" value={input.desc} onChange={handleChange} placeholder="add a note"/>
-                <Zoom in={isTyping}>
-                    <Fab disabled={input.name === "" && input.desc ==="" ? true : false } onClick={handleClick}>
+                {/* <Zoom in={isTyping}>
+                    <Button className="add" disabled={input.name === "" && input.desc ==="" ? true : false } onClick={handleClick}>
                         <AddIcon/>
-                    </Fab>
-                </Zoom>
+                        
+                    </Button>
+                   
+                </Zoom> */}
+                <button onClick={handleClick} className={isTyping ? "add" : "hide"} disabled={input.name === "" && input.desc ==="" ? true : false } >
+                    <AddIcon/>
+                </button>
                
             </form>
         </div>
