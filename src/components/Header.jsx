@@ -18,7 +18,7 @@ function Header() {
           <span>contact</span>
         </a>
 
-        <a target="_blank" href="https://github.com/alokkumax">
+        <a target="_blank" href="https://github.com/alokkumax/KeeperApp">
           <span>github</span>
         </a>
         <div onClick={handleToggle}>
