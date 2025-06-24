@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import dp from "../assets/dp.jpg";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { useTheme } from "../ThemeContext";
+
 function Header() {
-  const [toggle, setToggle] = useState(false);
-  const handleToggle = () =>{
-    setToggle(!toggle)
-  }
+  const { isDarkMode, toggleTheme } = useTheme();
+
   return (
     <header>
       <h1>keep</h1>
@@ -21,9 +21,8 @@ function Header() {
         <a target="_blank" href="https://github.com/alokkumax/KeeperApp">
           <span>github</span>
         </a>
-        <div onClick={handleToggle}>
-        {!toggle ? <LightModeIcon /> : <DarkModeIcon />}
-
+        <div className="theme-toggle" onClick={toggleTheme}>
+          {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
         </div>
       </div>
     </header>

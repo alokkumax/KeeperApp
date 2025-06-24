@@ -1,7 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
+/* CSS Variables for Light Theme */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #000000;
+  --text-secondary: #3f3f3f;
+  --border-color: rgba(0, 0, 0, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --shadow-color-strong: rgba(0, 0, 0, 0.08);
+  --note-bg: #ffffff;
+  --form-bg: #ffffff;
+  --button-bg: #080808;
+  --button-hover: #414141;
+  --footer-border: gray;
+}
 
-
+/* CSS Variables for Dark Theme */
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-strong: rgba(0, 0, 0, 0.5);
+  --note-bg: #2d2d2d;
+  --form-bg: #2d2d2d;
+  --button-bg: #ffffff;
+  --button-hover: #cccccc;
+  --footer-border: #444444;
+}
 
 * {
   padding: 0;
@@ -10,20 +39,21 @@
 }
 html{
   height: 100%;
+  transition: background-color 0.3s ease;
 }
 body {
-  /* background-color: #ec7979; */
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   padding: 2rem 12rem;
   min-height: 100%;
 
   display: flex;
   flex-direction: column;
   position: relative;
-
-
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .main{
-  background-color: #414141;
+  background-color: var(--bg-secondary);
 }
 .message{
   display: flex;
@@ -32,23 +62,26 @@ body {
   justify-content: center;
   width: 100%;
   font-family: "Montserrat";
+  color: var(--text-primary);
 }
 .message > img {
   width: 10vh;
 }
 header {
   /* position: fixed; */
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  transition: background-color 0.3s ease;
 }
 
 header h1 {
-  color: #000000;
+  color: var(--text-primary);
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 45px;
+  transition: color 0.3s ease;
 }
 header > div{
   gap: 4rem;
@@ -59,11 +92,47 @@ header > div > a{
   font-size: 20px;
   font-family: "Montserrat";
   text-decoration: underline;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 header > div > img{
   width: 3rem;
   border-radius: 50%;
 }
+
+/* Theme Toggle Button Styles */
+.theme-toggle {
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle svg {
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(180deg);
+}
+
 .footer{
   margin-top: auto;
   width: 100%;
@@ -82,29 +151,30 @@ header > div > img{
  justify-content: space-between;
  align-items: center;
  height: 4rem;
- background-color: #ffffff;
+ background-color: var(--bg-primary);
  /* position: absolute; */
  bottom: 0%;
  width: 100%;
- border-top: 1px solid gray;
+ border-top: 1px solid var(--footer-border);
  padding: 0rem 12rem;
  font-family: "Montserrat";
-
+ transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 a{
-  color: #000000;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 .footer > div > a{
   text-decoration: underline;
 }
 .footer > div > span{
   text-align: center;
+  color: var(--text-primary);
 }
 .footer > div > div{
   display: flex;
   gap: 1.5rem;
 }
-
 
 .drop{
   display: flex;
@@ -112,43 +182,88 @@ a{
   gap: 1rem;
   padding-bottom: 4rem;
 }
+
+/* Masonry Layout Styles */
+.notes-masonry {
+  display: flex;
+  margin-left: -1.5rem; /* gutter size offset */
+  width: auto;
+}
+.notes-masonry-column {
+  padding-left: 1.5rem; /* gutter size */
+  background-clip: padding-box;
+}
+.notes-masonry-column > .note {
+  margin-bottom: 1.5rem;
+}
+
+/* Note Card Styles */
 .note {
   position: relative;
-  background: #fff;
-  border-radius: 15px;
-  padding: 10px;
-  width: 24%;
-  min-width: 300px;
-  height: fit-content;
-  float: left;
+  background: var(--note-bg);
+  border-radius: 16px;
+  padding: 18px 16px 16px 16px;
+  min-width: 0;
+  min-height: 120px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.06);
+  border: 1.5px solid var(--border-color);
   font-family: "Montserrat";
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  word-break: break-word;
 }
-.note:hover{
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 
+.note:hover {
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+  border-color: var(--text-secondary);
 }
+
 .note h1 {
-  font-size: 1.1em;
-  margin-bottom: 6px;
+  font-size: 1.15em;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
 }
+
 .note p {
-  font-size: 1.1em;
-  margin-bottom: 10px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  font-size: 1em;
+  color: var(--text-primary);
+  margin-bottom: 0;
+  flex: 1 1 auto;
 }
+
+@media (max-width: 900px) {
+  .notes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+  .notes-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
 .cross{
   background-color: transparent;
   position: absolute;
   right: 2%;
   top: 7%;
-  color: #3f3f3f;
+  color: var(--text-secondary);
   border: none;
   width: 36px;
   height: 36px;
   cursor: pointer;
   outline: none;
+  transition: color 0.3s ease;
 }
 .hidden{
 display: none;
@@ -161,10 +276,11 @@ form.create-note {
   position: relative;
   width: 480px;
   margin: 30px auto 20px auto;
-  background: #fff;
-  padding: 15px;
+  background: var(--form-bg);
+  padding: 7px;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  box-shadow: var(--shadow-color) 0px 6px 24px 0px, var(--shadow-color-strong) 0px 0px 0px 1px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 form.create-note input,
 form.create-note textarea {
@@ -176,14 +292,19 @@ form.create-note textarea {
   font-family: "Montserrat";
   font-weight: 400;
   resize: none;
+  background-color: transparent;
+  color: var(--text-primary);
+}
+form.create-note textarea::placeholder {
+  font-size: 14px;
 }
 .add{
   display: none;
   position: absolute;
   right: 2%;
   bottom: 5%;
-  background: #080808;
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--bg-primary);
   border: none;
   border-radius: 50%;
   width: 36px;
@@ -194,12 +315,156 @@ form.create-note textarea {
   justify-content: center;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s ease;
 }
 .hide{
   display: none;
 }
 form.create-note button:hover{
-  background: #414141;
+  background: var(--button-hover);
+}
 
+/* Gradient Picker Styles */
+.gradient-picker {
+  margin: 12px 0 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.preset-gradients {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.gradient-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.gradient-btn.selected {
+  border-color: #333;
+  transform: scale(1.1);
+}
+.custom-gradient-input {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font-size: 1em;
+  font-family: inherit;
+  margin-top: 2px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background 0.2s, color 0.2s;
+}
+.custom-gradient-input:focus {
+  outline: 2px solid #888;
+  border-color: #888;
+}
 
+.notes-form-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+.notes-filter-dropdown {
+  padding: 8px 28px 8px 8px;
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: "Montserrat";
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  cursor: pointer;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-weight: 400;
+}
+.notes-filter-dropdown:focus, .notes-filter-dropdown:hover {
+  border-color: #888;
+  background: var(--bg-secondary);
+}
+
+.custom-gradient-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.98em;
+  color: var(--text-primary);
+  margin-top: 6px;
+  gap: 2px;
+}
+.custom-gradient-preview {
+  min-height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  margin-top: 4px;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.paint-btn {
+  border: none;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 6px;
+  height: 35px;
+  width:35px;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paint-btn:hover {
+  background: var(--bg-primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.gradient-modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 320px;
+  max-width: 90vw;
+  outline: none;
+}
+@media (max-width: 500px) {
+  .gradient-modal-box {
+    min-width: 0;
+    width: 98vw;
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .notes-form-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .notes-filter-dropdown {
+    width: 100%;
+    height: 40px;
+  }
 }

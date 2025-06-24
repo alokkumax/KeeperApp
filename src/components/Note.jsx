@@ -11,9 +11,12 @@ function Note(props){
       setIsHovering(false);
     };
     return(
-        <div className="note" 
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}>
+        <div
+          className="note"
+          style={{ background: props.gradient || undefined }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
             <h1>{props.name}</h1>
             <p>{props.desc}</p>
             <button className={ isHovering ? "cross" : "hidden"} onClick={()=>props.onDlt(props.id)}>
