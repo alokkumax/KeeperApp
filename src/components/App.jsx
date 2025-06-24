@@ -18,19 +18,12 @@ function App(){
     }, [notes]);
 
     function onSubmit(newNote){
-        //getting notes from INPUT to APP
-        setNotes(prev =>{
-            return [...prev, newNote]
-        })
+        const noteWithId = { ...newNote, id: Date.now() + Math.random() };
+        setNotes(prev => [...prev, noteWithId]);
     }
 
     function handelDelete(id){
-        console.log(id + " Deleted!!!");
-        setNotes(prev=>{
-            return prev.filter((item,index)=>{
-                return index !== id;
-            })
-        })
+        setNotes(prev => prev.filter(item => item.id !== id));
     }
 
     // Masonry breakpoints
@@ -74,14 +67,14 @@ function App(){
                   className="notes-masonry"
                   columnClassName="notes-masonry-column"
                 >
-                    {sortedNotes.map((item,index)=>(
+                    {sortedNotes.map((item)=>(
                         <Note
-                            key ={index}
-                            id={index}
-                            name = {item.name}
-                            desc = {item.desc}
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            desc={item.desc}
                             gradient={item.gradient}
-                            onDlt = {handelDelete}
+                            onDlt={handelDelete}
                         />
                     ))}
                 </Masonry>
